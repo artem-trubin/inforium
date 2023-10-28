@@ -1,3 +1,5 @@
+import "./App.css";
+
 type Note = {
   id: string,
   text: string,
@@ -20,12 +22,21 @@ const testNotes: Array<Note> = [
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <div>Hello world!</div>
 
       <ul>
         {testNotes.map(note => <li>{note.text}</li>)}
       </ul>
+
+      <nav className="nav-bar">
+        <ul>
+          <li>Home</li>
+          <li>Search</li>
+          <li>Calendar</li>
+          <li>Settings</li>
+        </ul>
+      </nav>
     </div>
   )
 }
