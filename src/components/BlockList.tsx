@@ -1,9 +1,9 @@
-import { Note } from "../types";
+import { Block } from "../types";
 
-import NoteCard from "./NoteCard";
+import NoteCard from "./BlockCard";
 
 interface NoteListProps {
-  notes: Array<Note>,
+  notes: Array<Block>,
 }
 
 const NoteList = ({ notes }: NoteListProps) => {

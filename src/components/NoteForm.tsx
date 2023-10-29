@@ -18,7 +18,8 @@ const NoteForm = () => {
   const handleSave = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    context.saveNote(text);
+    // Rework this
+    // context.createBlock(text);
     setText('');
   }
 

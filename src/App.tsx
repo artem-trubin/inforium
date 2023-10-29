@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import "./App.css";
 
-import { Note, ContextState } from "./types";
+import { ContentBlock, ContextState } from "./types";
 
 import HomeView from "./views/HomeView";
 import SearchView from "./views/SearchView";
@@ -14,44 +14,61 @@ import EditorView from './views/EditorView';
 
 import { routerPaths } from "./utils";
 
-const testNotes: Array<Note> = [
+const testBlocks: Array<ContentBlock> = [
   {
     id: "1",
     text: "Test note",
     createdAt: Date.now(),
+    lastEditedAt: Date.now(),
+    type: "note",
   },
   {
     id: "2",
     text: "Another Test Note",
     createdAt: Date.now(),
+    lastEditedAt: Date.now(),
+    type: "note",
   },
   {
     id: "3",
     text: "The bestest note out there",
     createdAt: Date.now(),
+    lastEditedAt: Date.now(),
+    type: "note",
   },
 ];
 
 export const Context = createContext<ContextState | undefined>(undefined);
 
 function App() {
-  const [notes, setNotes] = useState(testNotes);
+  const [blocks, setBlocks] = useState(testBlocks);
 
   const context: ContextState = {
-    removeNote: (id: string): void => {
-      const newNotes = notes.filter(n => n.id !== id);
-      setNotes(newNotes);
+    removeBlock: (block: ContentBlock): void => {
+      if (block.id !== null) {
+        setBlocks(
+          blocks.filter(b => b.id !== block.id)
+        );
+      }
     },
 
-    saveNote: (text: string): void => {
-      const newNote: Note = {
+    createBlock: (block: ContentBlock): void => {
+      const newBlock: ContentBlock = {
+        ...block,
         id: uuidv4(),
-        text: text,
         createdAt: Date.now(),
       }
 
-      setNotes([...notes, newNote]);
+      setBlocks([...blocks, newBlock]);
     },
+
+    updateBlock: (block: ContentBlock): void => {
+      if (block.id !== null) {
+        setBlocks(
+          blocks.map(b => b.id === block.id ? block : b)
+        )
+      }
+    }
   }
 
   return (
@@ -59,7 +76,7 @@ function App() {
       <div className="app-container">
         <Routes>
           {/* Routes start with /inforium as a workaround for github pages */}
-          <Route path={routerPaths.home} element={<HomeView notes={notes} />} />
+          <Route path={routerPaths.home} element={<HomeView blocks={blocks} />} />
           <Route path={routerPaths.search} element={<SearchView />} />
           <Route path={routerPaths.calendar} element={<CalendarView />} />
           <Route path={routerPaths.settings} element={<SettingsView />} />

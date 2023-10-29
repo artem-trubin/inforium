@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Note, ContextState } from "../types";
+import { Block, ContextState } from "../types";
 
 import { makeDateReadable, throwContextError, routerPaths } from '../utils';
 
 import { Context } from '../App';
 
 interface NoteCardProps {
-  note: Note
+  note: Block
 }
 
 // Should only be used in ul or ol lists.
@@ -23,8 +23,8 @@ const NoteCard = ({note}: NoteCardProps) => {
   return (
     <li className="note-card">
       <div className="note-date">{makeDateReadable(note.createdAt)}</div>
-      <div className="note-text">{note.text}</div>
-      <button onClick={() => context.removeNote(note.id)}>Remove</button>
+      {/* <div className="note-text">{note.text}</div>
+      <button onClick={() => context.removeBlock(note.id)}>Remove</button> */}
       <Link to={routerPaths.editor}>Edit</Link>
     </li>
   )

@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
 import NoteForm from "../components/NoteForm";
-import NoteList from "../components/NoteList";
+import NoteList from "../components/BlockList";
 
-import { Note } from "../types";
+import { Block } from "../types";
 
 interface HomeViewProps {
-  notes: Array<Note>,
+  blocks: Array<Block>,
 }
 
 const HomeView = (props: HomeViewProps) => {
@@ -22,7 +22,7 @@ const HomeView = (props: HomeViewProps) => {
   return (
     <div className="home-container" ref={scrollableViewRef}>
       <NoteForm />
-      <NoteList notes={props.notes} />
+      <NoteList notes={props.blocks} />
     </div>
   )
 }
