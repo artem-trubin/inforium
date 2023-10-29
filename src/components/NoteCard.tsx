@@ -1,9 +1,10 @@
+import { useContext } from "react";
+
 import { Note, ContextState } from "../types";
 
 import { makeDateReadable, throwContextError } from '../utils';
 
 import { Context } from '../App';
-import { useContext } from "react";
 
 interface NoteCardProps {
   note: Note

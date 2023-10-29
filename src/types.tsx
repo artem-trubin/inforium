@@ -6,4 +6,5 @@ export type Note = {
 
 export type ContextState = {
   removeNote: (id: string) => void,
+  saveNote: (text: string) => void,
 }
