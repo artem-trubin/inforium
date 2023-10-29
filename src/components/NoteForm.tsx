@@ -19,6 +19,7 @@ const NoteForm = () => {
     event.preventDefault();
 
     context.saveNote(text);
+    setText('');
   }
 
   return (

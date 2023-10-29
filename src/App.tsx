@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { Routes, Route, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import "./App.css";
@@ -7,6 +8,11 @@ import { Note, ContextState } from "./types";
 
 import NoteList from "./components/NoteList";
 import NoteForm from "./components/NoteForm";
+
+import HomeView from "./views/HomeView";
+import SearchView from "./views/SearchView";
+import CalendarView from "./views/CalendarView";
+import SettingsView from "./views/SettingsView";
 
 const testNotes: Array<Note> = [
   {
@@ -50,7 +56,7 @@ function App() {
 
   return (
     <Context.Provider value={context}>
-      <div className="app-container">
+      {/* <div className="app-container">
         <div>Hello world!</div>
 
         <NoteForm />
@@ -62,6 +68,23 @@ function App() {
             <li>Search</li>
             <li>Calendar</li>
             <li>Settings</li>
+          </ul>
+        </nav>
+      </div> */}
+      <h1>Hi, user!</h1>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<HomeView notes={notes} />} />
+          <Route path="/search" element={<SearchView />} />
+          <Route path="/calendar" element={<CalendarView />} />
+          <Route path="/settings" element={<SettingsView />} />
+        </Routes>
+        <nav className="nav-bar">
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/search">Search</Link></li>
+            <li><Link to="/calendar">Calendar</Link></li>
+            <li><Link to="/settings">Settings</Link></li>
           </ul>
         </nav>
       </div>
