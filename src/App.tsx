@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "./App.css";
 
 import { Note } from "./types/Note";
@@ -23,11 +25,12 @@ const testNotes: Array<Note> = [
 ];
 
 function App() {
+  const [notes, setNotes] = useState(testNotes);
   return (
     <div className="app-container">
       <div>Hello world!</div>
 
-      <NoteList notes={testNotes} />
+      <NoteList notes={notes} />
 
       <nav className="nav-bar">
         <ul>
