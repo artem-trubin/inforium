@@ -56,17 +56,18 @@ function App() {
       <h1>Hi, user!</h1>
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<HomeView notes={notes} />} />
-          <Route path="/search" element={<SearchView />} />
-          <Route path="/calendar" element={<CalendarView />} />
-          <Route path="/settings" element={<SettingsView />} />
+          {/* Routes start with /inforium as a workaround for github pages */}
+          <Route path="/inforium/" element={<HomeView notes={notes} />} />
+          <Route path="/inforium/search" element={<SearchView />} />
+          <Route path="/inforium/calendar" element={<CalendarView />} />
+          <Route path="/inforium/settings" element={<SettingsView />} />
         </Routes>
         <nav className="nav-bar">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/search">Search</Link></li>
-            <li><Link to="/calendar">Calendar</Link></li>
-            <li><Link to="/settings">Settings</Link></li>
+            <li><Link to="/inforium/">Home</Link></li>
+            <li><Link to="/inforium/search">Search</Link></li>
+            <li><Link to="/inforium/calendar">Calendar</Link></li>
+            <li><Link to="/inforium/settings">Settings</Link></li>
           </ul>
         </nav>
       </div>
