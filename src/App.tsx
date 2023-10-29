@@ -6,9 +6,6 @@ import "./App.css";
 
 import { Note, ContextState } from "./types";
 
-import NoteList from "./components/NoteList";
-import NoteForm from "./components/NoteForm";
-
 import HomeView from "./views/HomeView";
 import SearchView from "./views/SearchView";
 import CalendarView from "./views/CalendarView";
@@ -56,21 +53,6 @@ function App() {
 
   return (
     <Context.Provider value={context}>
-      {/* <div className="app-container">
-        <div>Hello world!</div>
-
-        <NoteForm />
-        <NoteList notes={notes} />
-
-        <nav className="nav-bar">
-          <ul>
-            <li>Home</li>
-            <li>Search</li>
-            <li>Calendar</li>
-            <li>Settings</li>
-          </ul>
-        </nav>
-      </div> */}
       <h1>Hi, user!</h1>
       <div className="app-container">
         <Routes>
