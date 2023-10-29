@@ -67,4 +67,17 @@ html, body, #root {
 
     overflow: auto;
   }
+
+  .note-card {
+    margin: 10px 0;
+    padding: 20px;
+  }
+
+  .note-date {
+    font-size: 14px;
+  }
+
+  .note-text {
+    font-size: 20px;
+  }
 }

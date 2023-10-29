@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { Note, ContextState } from "../types";
 
-import { makeDateReadable, throwContextError } from '../utils';
+import { makeDateReadable, throwContextError, routerPaths } from '../utils';
 
 import { Context } from '../App';
 
@@ -20,7 +21,12 @@ const NoteCard = ({note}: NoteCardProps) => {
   }
 
   return (
-    <li className="note-card">{note.text} {makeDateReadable(note.createdAt)}<button onClick={() => context.removeNote(note.id)}>Remove</button></li>
+    <li className="note-card">
+      <div className="note-date">{makeDateReadable(note.createdAt)}</div>
+      <div className="note-text">{note.text}</div>
+      <button onClick={() => context.removeNote(note.id)}>Remove</button>
+      <Link to={routerPaths.editor}>Edit</Link>
+    </li>
   )
 }
 

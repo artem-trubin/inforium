@@ -22,3 +22,11 @@ export const throwContextError = (componentName: string): void => {
     }`
   );
 }
+
+export const routerPaths = {
+  home: "/inforium",
+  editor: "/inforium/editor",
+  settings: "/inforium/settings",
+  search: "/inforium/search",
+  calendar: "/inforium/calendar",
+}

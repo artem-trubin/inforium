@@ -10,6 +10,9 @@ import HomeView from "./views/HomeView";
 import SearchView from "./views/SearchView";
 import CalendarView from "./views/CalendarView";
 import SettingsView from "./views/SettingsView";
+import EditorView from './views/EditorView';
+
+import { routerPaths } from "./utils";
 
 const testNotes: Array<Note> = [
   {
@@ -56,17 +59,18 @@ function App() {
       <div className="app-container">
         <Routes>
           {/* Routes start with /inforium as a workaround for github pages */}
-          <Route path="/inforium/" element={<HomeView notes={notes} />} />
-          <Route path="/inforium/search" element={<SearchView />} />
-          <Route path="/inforium/calendar" element={<CalendarView />} />
-          <Route path="/inforium/settings" element={<SettingsView />} />
+          <Route path={routerPaths.home} element={<HomeView notes={notes} />} />
+          <Route path={routerPaths.search} element={<SearchView />} />
+          <Route path={routerPaths.calendar} element={<CalendarView />} />
+          <Route path={routerPaths.settings} element={<SettingsView />} />
+          <Route path={routerPaths.editor} element={<EditorView />} />
         </Routes>
         <nav className="nav-bar">
           <ul>
-            <li><Link to="/inforium/">Home</Link></li>
-            <li><Link to="/inforium/search">Search</Link></li>
-            <li><Link to="/inforium/calendar">Calendar</Link></li>
-            <li><Link to="/inforium/settings">Settings</Link></li>
+            <li><Link to={routerPaths.home}>Home</Link></li>
+            <li><Link to={routerPaths.search}>Search</Link></li>
+            <li><Link to={routerPaths.calendar}>Calendar</Link></li>
+            <li><Link to={routerPaths.settings}>Settings</Link></li>
           </ul>
         </nav>
       </div>
