@@ -3,3 +3,7 @@ export type Note = {
   text: string,
   createdAt: number,
 }
+
+export type ContextState = {
+  removeNote: (id: string) => void,
+}

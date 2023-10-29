@@ -1,4 +1,4 @@
-const makeDateReadable = (date: number): string => {
+export const makeDateReadable = (date: number): string => {
   const dateObj = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -8,6 +8,17 @@ const makeDateReadable = (date: number): string => {
   return dateObj.toLocaleDateString(undefined, options);
 }
 
-export {
-  makeDateReadable,
+class ContextError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ContextError';
+  }
+}
+
+export const throwContextError = (componentName: string): void => {
+  throw new ContextError(
+    `Context wasn't provided correctly. ${
+      componentName ? "(" + componentName + ")" : ""
+    }`
+  );
 }
