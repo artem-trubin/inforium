@@ -53,7 +53,6 @@ function App() {
 
   return (
     <Context.Provider value={context}>
-      <h1>Hi, user!</h1>
       <div className="app-container">
         <Routes>
           {/* Routes start with /inforium as a workaround for github pages */}

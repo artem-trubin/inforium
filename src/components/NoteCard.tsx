@@ -20,7 +20,7 @@ const NoteCard = ({note}: NoteCardProps) => {
   }
 
   return (
-    <li>{note.text} {makeDateReadable(note.createdAt)}<button onClick={() => context.removeNote(note.id)}>Remove</button></li>
+    <li className="note-card">{note.text} {makeDateReadable(note.createdAt)}<button onClick={() => context.removeNote(note.id)}>Remove</button></li>
   )
 }
 
