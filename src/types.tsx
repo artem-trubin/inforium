@@ -1,4 +1,4 @@
-export interface Block {
+interface Block {
   id: string | null,
   createdAt: number,
   lastEditedAt: number,

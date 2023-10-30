@@ -1,17 +1,13 @@
-import { Block } from "../types";
+import { ContentBlock } from "../types";
 
-import NoteCard from "./BlockCard";
+import BlockCard from "./BlockCard";
 
-interface NoteListProps {
-  notes: Array<Block>,
-}
-
-const NoteList = ({ notes }: NoteListProps) => {
+const BlockList = ({ blocks }: { blocks: Array<ContentBlock> }) => {
   return (
     <ul>
-      {notes.map(note => <NoteCard key={note.id} note={note} />)}
+      {blocks.map(block => <BlockCard key={block.id} block={block} />)}
     </ul>
   )
 }
 
-export default NoteList;
+export default BlockList;

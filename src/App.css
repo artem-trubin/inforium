@@ -68,16 +68,29 @@ html, body, #root {
     overflow: auto;
   }
 
-  .note-card {
+  .block-card {
     margin: 10px 0;
     padding: 20px;
   }
 
-  .note-date {
+  .block-date {
     font-size: 14px;
   }
 
-  .note-text {
+  .note-block-text {
     font-size: 20px;
+  }
+
+  .block-utility {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .block-more {
+    width: 15px;
+    height: 15px;
+    background: url("./public/more-icon.png");
+    background-size: 15px 15px;
   }
 }

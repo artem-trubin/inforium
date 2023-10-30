@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 
-import NoteForm from "../components/NoteForm";
-import NoteList from "../components/BlockList";
+import BlockList from "../components/BlockList";
 
-import { Block } from "../types";
+import { ContentBlock, ContextState } from "../types";
+
+import { Context } from "../App";
+import { throwContextError } from "../utils";
 
 interface HomeViewProps {
-  blocks: Array<Block>,
+  blocks: Array<ContentBlock>,
 }
 
 const HomeView = (props: HomeViewProps) => {
@@ -19,10 +21,23 @@ const HomeView = (props: HomeViewProps) => {
     }
   }, []);
 
+  const context = useContext<ContextState | undefined>(Context);
+  if (context === undefined) {
+    throwContextError('HomeView');
+    return null;
+  }
+
+  // TODO: remove reversing with css, just resort array of blocks by date
   return (
     <div className="home-container" ref={scrollableViewRef}>
-      <NoteForm />
-      <NoteList notes={props.blocks} />
+      <button onClick={() => context.createBlock({
+        type: "note",
+        id: null,
+        text: "TEST NOTE",
+        createdAt: Date.now(),
+        lastEditedAt: Date.now(),
+      })}>Add test note</button>
+      <BlockList blocks={props.blocks} />
     </div>
   )
 }
