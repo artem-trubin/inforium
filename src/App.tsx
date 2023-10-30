@@ -42,8 +42,15 @@ export const Context = createContext<ContextState | undefined>(undefined);
 
 function App() {
   const [blocks, setBlocks] = useState(testBlocks);
+  const [
+    homeViewDropdownId,
+    setHomeViewDropdownId
+  ] = useState<string | null>(null);
 
   const context: ContextState = {
+    homeViewDropdownId,
+    setHomeViewDropdownId,
+
     removeBlock: (block: ContentBlock): void => {
       if (block.id !== null) {
         setBlocks(
@@ -68,7 +75,7 @@ function App() {
           blocks.map(b => b.id === block.id ? block : b)
         )
       }
-    }
+    },
   }
 
   return (

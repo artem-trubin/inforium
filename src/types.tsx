@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface Block {
   id: string | null,
   createdAt: number,
@@ -26,4 +28,7 @@ export type ContextState = {
   createBlock: (block: ContentBlock) => void,
   removeBlock: (block: ContentBlock) => void,
   updateBlock: (block: ContentBlock) => void,
+
+  homeViewDropdownId: string | null,
+  setHomeViewDropdownId: Dispatch<SetStateAction<string | null>>,
 }

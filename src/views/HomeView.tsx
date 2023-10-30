@@ -13,15 +13,27 @@ interface HomeViewProps {
 
 const HomeView = (props: HomeViewProps) => {
   const scrollableViewRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLUListElement>(null);
+  const context = useContext<ContextState | undefined>(Context);
 
   useEffect(() => {
     if (scrollableViewRef.current) {
       const scrollableView = scrollableViewRef.current;
       scrollableView.scrollTop = scrollableView.scrollHeight;
     }
-  }, []);
 
-  const context = useContext<ContextState | undefined>(Context);
+    const handleClickOutsideOfDropdown = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        if (context) context.setHomeViewDropdownId(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideOfDropdown);
+  }, [context]);
+
   if (context === undefined) {
     throwContextError('HomeView');
     return null;
@@ -37,7 +49,7 @@ const HomeView = (props: HomeViewProps) => {
         createdAt: Date.now(),
         lastEditedAt: Date.now(),
       })}>Add test note</button>
-      <BlockList blocks={props.blocks} />
+      <BlockList blocks={props.blocks} dropdownRef={dropdownRef} />
     </div>
   )
 }

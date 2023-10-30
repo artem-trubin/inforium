@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { RefObject, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { ContentBlock, NoteBlock, ContextState } from "../types";
 import { makeDateReadable, routerPaths, throwContextError } from "../utils";
 
 import { Context } from '../App';
+import Dropdown, { DropdownItem } from "./Dropdown";
 
 const NoteCard = ({ note }: { note: NoteBlock }) => {
   return (
@@ -14,10 +15,10 @@ const NoteCard = ({ note }: { note: NoteBlock }) => {
   )
 }
 
-interface BlockCardProps {
-  block: ContentBlock
-}
-const BlockCard = ({ block }: BlockCardProps) => {
+const BlockCard = ({ block, dropdownRef }: {
+  block: ContentBlock,
+  dropdownRef: RefObject<HTMLUListElement>,
+}) => {
   const context = useContext<ContextState | undefined>(Context);
   if (context === undefined) {
     throwContextError('NoteCard');
@@ -31,11 +32,31 @@ const BlockCard = ({ block }: BlockCardProps) => {
     card = <NoteCard note={block} />;
   }
 
+  const dropdownItems: Array<DropdownItem> = [
+    {
+      text: "Edit",
+      onClick: () => console.log("Edit clicked"),
+    },
+    {
+      text: "Delete",
+      onClick: () => context.removeBlock(block),
+    },
+  ];
+
   return (
     <li className="block-card">
       <div className="block-utility">
         <div className="block-date">{makeDateReadable(block.createdAt)}</div>
-        <div className="block-more"></div>
+        <button
+          className="block-more"
+          onClick={() => context.setHomeViewDropdownId(block.id)}
+        >
+        </button>
+        <Dropdown
+          items={dropdownItems}
+          opened={block.id === context.homeViewDropdownId}
+          dropdownRef={dropdownRef}
+        />
       </div>
       {card}
       <Link to={routerPaths.editor}>Edit</Link>
