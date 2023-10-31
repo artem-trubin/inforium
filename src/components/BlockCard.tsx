@@ -1,5 +1,5 @@
 import { RefObject, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ContentBlock, NoteBlock, ContextState } from "../types";
 import { makeDateReadable, routerPaths, throwContextError } from "../utils";
@@ -19,6 +19,7 @@ const BlockCard = ({ block, dropdownRef }: {
   block: ContentBlock,
   dropdownRef: RefObject<HTMLUListElement>,
 }) => {
+  const navigate = useNavigate();
   const context = useContext<ContextState | undefined>(Context);
   if (context === undefined) {
     throwContextError('NoteCard');
@@ -35,7 +36,7 @@ const BlockCard = ({ block, dropdownRef }: {
   const dropdownItems: Array<DropdownItem> = [
     {
       text: "Edit",
-      onClick: () => console.log("Edit clicked"),
+      onClick: () => navigate(routerPaths.editor),
     },
     {
       text: "Delete",
@@ -59,8 +60,6 @@ const BlockCard = ({ block, dropdownRef }: {
         />
       </div>
       {card}
-      <Link to={routerPaths.editor}>Edit</Link>
-      <button onClick={() => context.removeBlock(block)}>Remove</button>
     </li>
   )
 }
