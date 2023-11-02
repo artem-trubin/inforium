@@ -31,4 +31,6 @@ export type ContextState = {
 
   homeViewDropdownId: string | null,
   setHomeViewDropdownId: Dispatch<SetStateAction<string | null>>,
+
+  currentBlockForEditor: ContentBlock | null,
 }
