@@ -45,7 +45,8 @@ const HomeView = (props: HomeViewProps) => {
       <button onClick={() => context.createBlock({
         type: "note",
         id: null,
-        text: "TEST NOTE",
+        text: "TEST NOTE TEXT",
+        title: "TEXT NOTE TITLE",
         createdAt: Date.now(),
         lastEditedAt: Date.now(),
       })}>Add test note</button>

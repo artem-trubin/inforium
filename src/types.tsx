@@ -9,6 +9,7 @@ interface Block {
 export interface NoteBlock extends Block {
   type: "note",
   text: string,
+  title: string,
 }
 
 export interface Todo {
@@ -33,4 +34,5 @@ export type ContextState = {
   setHomeViewDropdownId: Dispatch<SetStateAction<string | null>>,
 
   currentBlockForEditor: ContentBlock | null,
+  setCurrentBlockForEditor: Dispatch<SetStateAction<ContentBlock | null>>,
 }

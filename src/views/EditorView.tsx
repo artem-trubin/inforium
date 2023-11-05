@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, ChangeEvent } from "react";
 
 import { Context } from "../App";
 import { throwContextError } from "../utils";
@@ -29,14 +29,37 @@ const EditorView = () => {
 }
 
 const NoteBlockEditor = ({ note }: { note: NoteBlock }) => {
+  const [noteTitle, setNoteTitle] = useState(note.title);
+  const [noteText, setNoteText] = useState(note.text);
+
+  const handleTitleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setNoteTitle(event.target.value);
+  }
+
+  const handleTextInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setNoteText(event.target.value);
+  }
+
+  // TODO: add form for inputs
   return (
     <div>
-      { note.text }
+      <input
+        type="text"
+        onChange={handleTitleInput}
+        value={noteTitle}
+      />
+
+      <input
+        type="textarea"
+        onChange={handleTextInput}
+        value={noteText}
+      />
     </div>
   )
 }
 
 const TodoBlockEditor = ({ todo }: { todo: TodoBlock }) => {
+  // TODO: finish editor for todos
   return (
     <div>
       { todo.title }

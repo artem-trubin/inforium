@@ -36,7 +36,10 @@ const BlockCard = ({ block, dropdownRef }: {
   const dropdownItems: Array<DropdownItem> = [
     {
       text: "Edit",
-      onClick: () => navigate(routerPaths.editor),
+      onClick: () => {
+        navigate(routerPaths.editor);
+        context.setCurrentBlockForEditor(block);
+      },
     },
     {
       text: "Delete",

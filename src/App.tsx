@@ -17,6 +17,7 @@ import { routerPaths } from "./utils";
 const testBlocks: Array<ContentBlock> = [
   {
     id: "1",
+    title: "Test title",
     text: "Test note",
     createdAt: Date.now(),
     lastEditedAt: Date.now(),
@@ -24,6 +25,7 @@ const testBlocks: Array<ContentBlock> = [
   },
   {
     id: "2",
+    title: "Test title",
     text: "Another Test Note",
     createdAt: Date.now(),
     lastEditedAt: Date.now(),
@@ -31,6 +33,7 @@ const testBlocks: Array<ContentBlock> = [
   },
   {
     id: "3",
+    title: "Test title",
     text: "The bestest note out there",
     createdAt: Date.now(),
     lastEditedAt: Date.now(),
@@ -47,9 +50,17 @@ function App() {
     setHomeViewDropdownId
   ] = useState<string | null>(null);
 
+  const [
+    currentBlockForEditor,
+    setCurrentBlockForEditor,
+  ] = useState<ContentBlock | null>(null);
+
   const context: ContextState = {
     homeViewDropdownId,
     setHomeViewDropdownId,
+
+    currentBlockForEditor,
+    setCurrentBlockForEditor,
 
     removeBlock: (block: ContentBlock): void => {
       if (block.id !== null) {
