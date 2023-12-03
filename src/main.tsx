@@ -6,12 +6,13 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 const root = document.getElementById('root');
 
-function adjustPageHeight():void {
+window.addEventListener('resize', () => {
+  root!.style.background = "red";
   root!.style.height = window.innerHeight + "px";
-}
+});
 
-window.addEventListener('resize', adjustPageHeight);
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', () => {
+  root!.style.background = "green";
   root!.style.height = '100vh';
 });
 
