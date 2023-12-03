@@ -92,6 +92,7 @@ function App() {
   return (
     <Context.Provider value={context}>
       <div className="app-container">
+        <div className="content">
         <Routes>
           {/* Routes start with /inforium as a workaround for github pages */}
           <Route path={routerPaths.home} element={<HomeView blocks={blocks} />} />
@@ -100,6 +101,7 @@ function App() {
           <Route path={routerPaths.settings} element={<SettingsView />} />
           <Route path={routerPaths.editor} element={<EditorView />} />
         </Routes>
+        </div>
         <nav className="nav-bar">
           <ul>
             <li><Link to={routerPaths.home}>Home</Link></li>

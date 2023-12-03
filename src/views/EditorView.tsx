@@ -1,8 +1,9 @@
 import { useContext, useState, ChangeEvent } from "react";
 
 import { Context } from "../App";
-import { throwContextError } from "../utils";
-import { NoteBlock, TodoBlock } from "../types";
+import { routerPaths, throwContextError } from "../utils";
+import { ContextState, NoteBlock, TodoBlock } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const EditorView = () => {
   const context = useContext(Context);
@@ -29,31 +30,57 @@ const EditorView = () => {
 }
 
 const NoteBlockEditor = ({ note }: { note: NoteBlock }) => {
+  const context = useContext<ContextState | undefined>(Context);
+
   const [noteTitle, setNoteTitle] = useState(note.title);
   const [noteText, setNoteText] = useState(note.text);
+
+  const navigate = useNavigate();
+
+  if (context === undefined) {
+    throwContextError('HomeView');
+    return null;
+  }
 
   const handleTitleInput = (event: ChangeEvent<HTMLInputElement>) => {
     setNoteTitle(event.target.value);
   }
 
-  const handleTextInput = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleTextInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setNoteText(event.target.value);
   }
 
-  // TODO: add form for inputs
-  return (
-    <div>
-      <input
-        type="text"
-        onChange={handleTitleInput}
-        value={noteTitle}
-      />
+  const onSave = () => {
+    const updatedBlock: NoteBlock = {
+      ...note,
+      title: noteTitle,
+      text: noteText,
+    };
 
-      <input
-        type="textarea"
-        onChange={handleTextInput}
-        value={noteText}
-      />
+    context.updateBlock(updatedBlock);
+
+    navigate(routerPaths.home);
+  }
+
+  return (
+    <div className="editor-container">
+      <header className="editor-header">Here will be header with indicators</header>
+      <form className="editor-form">
+        <input
+          className="editor-title"
+          type="text"
+          onChange={handleTitleInput}
+          value={noteTitle}
+        />
+
+        <textarea
+          className="editor-text"
+          onChange={handleTextInput}
+          value={noteText}
+        ></textarea>
+
+        <button className="editor-save" type="button" onClick={onSave}>Save</button>
+      </form>
     </div>
   )
 }

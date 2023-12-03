@@ -10,6 +10,7 @@ import Dropdown, { DropdownItem } from "./Dropdown";
 const NoteCard = ({ note }: { note: NoteBlock }) => {
   return (
     <div className="note-block-content">
+      <div className="note-block-title">{note.title}</div>
       <div className="note-block-text">{note.text}</div>
     </div>
   )
@@ -39,6 +40,7 @@ const BlockCard = ({ block, dropdownRef }: {
       onClick: () => {
         navigate(routerPaths.editor);
         context.setCurrentBlockForEditor(block);
+        context.setHomeViewDropdownId(null);
       },
     },
     {
