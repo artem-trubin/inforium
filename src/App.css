@@ -49,9 +49,6 @@ button, input[type="submit"], input[type="reset"] {
   .nav-bar {
     width: 100%;
     height: var(--nav-bar-height);
-
-    position: fixed;
-    bottom: 0px;
   }
 
   .nav-bar ul {
@@ -167,7 +164,6 @@ button, input[type="submit"], input[type="reset"] {
 
     display: flex;
     flex-direction: column;
-    background: yellow;
   }
 
   .editor-header {
